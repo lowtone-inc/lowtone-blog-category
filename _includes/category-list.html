@@ -1,0 +1,11 @@
+{%- comment -%}
+  카테고리 배지 목록
+  사용법: {% include category-list.html categories=post.categories %}
+{%- endcomment -%}
+{%- if include.categories.size > 0 -%}
+<ul class="category-list">
+  {%- for slug in include.categories -%}
+    <li>{% include category-link.html slug=slug %}</li>
+  {%- endfor -%}
+</ul>
+{%- endif -%}

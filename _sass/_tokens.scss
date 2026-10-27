@@ -1,0 +1,29 @@
+// 디자인 토큰: 색상은 CSS 변수로 두어 다크 모드에서 한 번에 교체
+:root {
+  --color-bg: #ffffff;
+  --color-surface: #f6f7f9;
+  --color-text: #1f2328;
+  --color-muted: #656d76;
+  --color-border: #e4e7eb;
+  --color-accent: #3b5bdb;
+  --color-accent-soft: #edf2ff;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #0f1115;
+    --color-surface: #171a21;
+    --color-text: #e6e8eb;
+    --color-muted: #9aa3ad;
+    --color-border: #2a2f38;
+    --color-accent: #91a7ff;
+    --color-accent-soft: #1c2440;
+  }
+}
+
+$font-sans: "Pretendard", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+$font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+$container-width: 760px;
+$radius: 8px;
+$space: 8px;
+$bp-mobile: 600px;

@@ -1,0 +1,11 @@
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="site-header__title" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+    <nav class="site-nav" aria-label="주요 메뉴">
+      {%- for item in site.data.navigation -%}
+        {%- assign item_url = item.url | relative_url -%}
+        <a class="site-nav__link{% if page.url == item.url %} is-active{% endif %}" href="{{ item_url }}">{{ item.title }}</a>
+      {%- endfor -%}
+    </nav>
+  </div>
+</header>

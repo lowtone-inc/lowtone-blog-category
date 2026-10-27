@@ -1,0 +1,65 @@
+# ---------------------------------------------------------------
+# 사이트 기본 정보
+# ---------------------------------------------------------------
+title: LOWTONE Blog
+description: 카테고리별로 정리하는 LOWTONE 기술 블로그
+author: LOWTONE
+lang: ko-KR
+timezone: Asia/Seoul
+
+# GitHub Pages 주소: https://lowtone-inc.github.io/lowtone-blog-category
+# (Actions 배포 시 baseurl 은 워크플로에서 자동으로 덮어씀)
+url: "https://lowtone-inc.github.io"
+baseurl: "/lowtone-blog-category"
+
+# ---------------------------------------------------------------
+# 빌드 설정
+# ---------------------------------------------------------------
+markdown: kramdown
+highlighter: rouge
+permalink: /:year/:month/:day/:title/
+
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+
+sass:
+  style: compressed
+
+plugins:
+  - jekyll-archives
+  - jekyll-feed
+  - jekyll-paginate
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+# 홈 페이지네이션 (index.html 에만 적용)
+paginate: 10
+paginate_path: /page/:num/
+
+# 카테고리별 아카이브 페이지 자동 생성 → /category/<slug>/
+jekyll-archives:
+  enabled:
+    - categories
+  layout: category
+  permalinks:
+    category: /category/:name/
+
+# 모든 글에 기본 레이아웃 적용
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: page
+
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor/

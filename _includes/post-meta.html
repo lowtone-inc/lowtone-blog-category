@@ -1,0 +1,12 @@
+{%- comment -%}
+  글 메타 정보 (작성일 · 읽는 시간 · 카테고리)
+  사용법: {% include post-meta.html post=post %}
+{%- endcomment -%}
+{%- assign words = include.post.content | strip_html | number_of_words: "cjk" -%}
+{%- assign minutes = words | divided_by: 250 | at_least: 1 -%}
+<div class="post-meta">
+  <time datetime="{{ include.post.date | date_to_xmlschema }}">{{ include.post.date | date: "%Y.%m.%d" }}</time>
+  <span class="post-meta__sep" aria-hidden="true">·</span>
+  <span>{{ minutes }}분 읽기</span>
+  {% include category-list.html categories=include.post.categories %}
+</div>
