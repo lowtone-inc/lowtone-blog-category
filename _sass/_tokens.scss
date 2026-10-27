@@ -1,29 +1,42 @@
-// 디자인 토큰: 색상은 CSS 변수로 두어 다크 모드에서 한 번에 교체
+// 디자인 토큰: Apple HIG 톤의 중립 팔레트
+// 색상은 CSS 변수로 두어 다크 모드에서 값만 교체
 :root {
   --color-bg: #ffffff;
-  --color-surface: #f6f7f9;
-  --color-text: #1f2328;
-  --color-muted: #656d76;
-  --color-border: #e4e7eb;
-  --color-accent: #3b5bdb;
-  --color-accent-soft: #edf2ff;
+  --color-surface: #f5f5f7;
+  --color-text: #1d1d1f;
+  --color-muted: #6e6e73;
+  --color-border: #d2d2d7;
+  --color-accent: #0071e3;
+  --color-accent-hover: #0077ed;
+  --color-on-accent: #ffffff;
+  --color-pill-bg: rgba(0, 0, 0, 0.05);
+  --color-glass: rgba(255, 255, 255, 0.72);
+  --shadow-raised: 0 4px 24px rgba(0, 0, 0, 0.08);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-bg: #0f1115;
-    --color-surface: #171a21;
-    --color-text: #e6e8eb;
-    --color-muted: #9aa3ad;
-    --color-border: #2a2f38;
-    --color-accent: #91a7ff;
-    --color-accent-soft: #1c2440;
+    --color-bg: #000000;
+    --color-surface: #1d1d1f;
+    --color-text: #f5f5f7;
+    --color-muted: #a1a1a6;
+    --color-border: #424245;
+    --color-accent: #2997ff;
+    --color-accent-hover: #47a6ff;
+    --color-on-accent: #ffffff;
+    --color-pill-bg: rgba(255, 255, 255, 0.1);
+    --color-glass: rgba(22, 22, 23, 0.72);
+    --shadow-raised: 0 4px 24px rgba(0, 0, 0, 0.5);
   }
 }
 
-$font-sans: "Pretendard", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
-$font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+// Apple 기기는 SF Pro, 그 외는 Pretendard 로 대체
+$font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Apple SD Gothic Neo", "Pretendard Variable", Pretendard, "Noto Sans KR", "Helvetica Neue", sans-serif;
+$font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Apple SD Gothic Neo", "Pretendard Variable", Pretendard, sans-serif;
+$font-mono: "SF Mono", ui-monospace, Menlo, Consolas, monospace;
 $container-width: 760px;
-$radius: 8px;
+$radius: 18px;
+$radius-sm: 12px;
 $space: 8px;
 $bp-mobile: 600px;
+$ease: cubic-bezier(0.25, 0.1, 0.25, 1);
