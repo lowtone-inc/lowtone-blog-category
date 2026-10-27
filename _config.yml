@@ -7,10 +7,10 @@ author: LOWTONE
 lang: ko-KR
 timezone: Asia/Seoul
 
-# GitHub Pages 주소: https://lowtone-inc.github.io/lowtone-blog-category
+# GitHub Pages 주소: https://nexuvo.fyi
 # (Actions 배포 시 baseurl 은 워크플로에서 자동으로 덮어씀)
-url: "https://lowtone-inc.github.io"
-baseurl: "/lowtone-blog-category"
+url: "https://nexuvo.fyi"
+baseurl: ""
 
 # ---------------------------------------------------------------
 # 빌드 설정
