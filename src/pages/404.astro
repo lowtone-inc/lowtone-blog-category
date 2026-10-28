@@ -1,0 +1,12 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHeader from '@/components/PageHeader.astro';
+import { withBase } from '@/lib/url';
+---
+
+<BaseLayout title="페이지를 찾을 수 없어요" noindex>
+  <PageHeader title="페이지를 찾을 수 없어요" />
+  <div class="prose">
+    <p>요청하신 페이지가 없습니다. <a href={withBase('/')}>홈으로 돌아가기</a></p>
+  </div>
+</BaseLayout>

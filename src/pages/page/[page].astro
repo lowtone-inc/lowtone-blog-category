@@ -1,0 +1,21 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import HomeView from '@/components/HomeView.astro';
+import { getPosts, paginatePosts, totalPagesOf } from '@/lib/posts';
+
+// 2페이지부터 /page/N/ 으로 생성 (1페이지는 index.astro)
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  const lastPage = totalPagesOf(posts.length);
+  return Array.from({ length: lastPage - 1 }, (_, i) => {
+    const page = i + 2;
+    return { params: { page: String(page) }, props: { slice: paginatePosts(posts, page) } };
+  });
+}
+
+const { slice } = Astro.props;
+---
+
+<BaseLayout title={`${slice.page}페이지`}>
+  <HomeView slice={slice} />
+</BaseLayout>

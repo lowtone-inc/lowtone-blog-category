@@ -1,0 +1,30 @@
+---
+import { postUrl, type Post } from '@/lib/posts';
+
+// older = 이전 글, newer = 다음 글
+export interface Props {
+  newer?: Post;
+  older?: Post;
+}
+
+const { newer, older } = Astro.props;
+---
+
+<nav class="post-nav" aria-label="이전/다음 글">
+  {
+    older && (
+      <a class="post-nav__link post-nav__link--prev card link-reset" href={postUrl(older)}>
+        <small>이전 글</small>
+        {older.data.title}
+      </a>
+    )
+  }
+  {
+    newer && (
+      <a class="post-nav__link post-nav__link--next card link-reset" href={postUrl(newer)}>
+        <small>다음 글</small>
+        {newer.data.title}
+      </a>
+    )
+  }
+</nav>

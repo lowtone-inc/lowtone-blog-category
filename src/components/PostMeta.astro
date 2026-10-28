@@ -1,0 +1,21 @@
+---
+import CategoryBadge from './CategoryBadge.astro';
+import { formatDate, isoDate, readingMinutes } from '@/lib/format';
+import type { Post } from '@/lib/posts';
+
+export interface Props {
+  post: Post;
+}
+
+const { post } = Astro.props;
+const { pubDate, category } = post.data;
+---
+
+<div class="post-meta">
+  <time datetime={isoDate(pubDate)}>{formatDate(pubDate)}</time>
+  <span aria-hidden="true">·</span>
+  <span>{readingMinutes(post.body)}분 읽기</span>
+  <ul class="category-list">
+    <li><CategoryBadge category={category} /></li>
+  </ul>
+</div>

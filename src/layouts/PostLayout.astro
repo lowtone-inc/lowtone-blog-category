@@ -1,0 +1,32 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import PostMeta from '@/components/PostMeta.astro';
+import PostNav from '@/components/PostNav.astro';
+import type { Post } from '@/lib/posts';
+
+export interface Props {
+  post: Post;
+  newer?: Post;
+  older?: Post;
+}
+
+const { post, newer, older } = Astro.props;
+const { title, description, tags, pubDate, updatedDate } = post.data;
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  article={{ publishedTime: pubDate, modifiedTime: updatedDate, tags }}
+>
+  <article class="post">
+    <header class="post__header">
+      <h1 class="post__title display">{title}</h1>
+      <PostMeta post={post} />
+    </header>
+    <div class="prose">
+      <slot />
+    </div>
+    <PostNav newer={newer} older={older} />
+  </article>
+</BaseLayout>

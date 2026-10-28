@@ -1,0 +1,11 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import HomeView from '@/components/HomeView.astro';
+import { getPosts, paginatePosts } from '@/lib/posts';
+
+const slice = paginatePosts(await getPosts(), 1);
+---
+
+<BaseLayout>
+  <HomeView slice={slice} />
+</BaseLayout>

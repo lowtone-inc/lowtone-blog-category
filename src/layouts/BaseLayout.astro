@@ -1,0 +1,30 @@
+---
+import BaseHead from '@/components/BaseHead.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import { SITE } from '@/config';
+import type { ArticleMeta } from '@/components/BaseHead.astro';
+
+export interface Props {
+  title?: string;
+  description?: string;
+  article?: ArticleMeta;
+  noindex?: boolean;
+}
+
+const { title, description, article, noindex } = Astro.props;
+---
+
+<!doctype html>
+<html lang={SITE.locale}>
+  <head>
+    <BaseHead title={title} description={description} article={article} noindex={noindex} />
+  </head>
+  <body>
+    <Header />
+    <main class="container site-main">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

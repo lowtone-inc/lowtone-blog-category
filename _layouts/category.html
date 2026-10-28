@@ -1,9 +1,0 @@
----
-layout: default
----
-{%- comment -%} jekyll-archives 가 카테고리마다 이 레이아웃으로 페이지를 생성 {%- endcomment -%}
-{%- assign meta = site.data.categories[page.title] -%}
-{%- assign cat_title = meta.name | default: page.title -%}
-{% include page-header.html title=cat_title description=meta.description %}
-<p class="category-count">글 {{ page.posts.size }}개 · <a href="{{ '/categories/' | relative_url }}">전체 카테고리</a></p>
-{% include post-list.html posts=page.posts %}
