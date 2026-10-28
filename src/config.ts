@@ -12,7 +12,7 @@ export const SITE = {
 // 서치콘솔 소유 확인 코드. 값이 있을 때만 meta 태그를 출력한다.
 export const SITE_VERIFICATION = {
   google: '',
-  naver: '',
+  naver: '0a572746545a76bff0b898531f1e9667c2e528c4',
 } as const;
 
 export const NAV_LINKS = [
