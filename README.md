@@ -1,43 +1,51 @@
-# LOWTONE Blog (Jekyll)
+# nexuvo.fyi
 
-카테고리 중심의 GitHub Pages 블로그입니다.
+Astro 기반 정적 블로그 (LOWTONE Blog). `main` 브랜치에 merge/push하면 GitHub Actions로 GitHub Pages에 자동 배포됩니다.
 
-## 로컬 실행
+## 개발
 
 ```bash
-bundle install
-bundle exec jekyll serve --livereload
-# http://localhost:4000/lowtone-blog-category/
+npm install
+npm run dev      # http://localhost:4321
+npm run build    # 타입 체크 + 빌드 -> dist/
 ```
 
-## 글 쓰기
+## 글 작성
 
-`_posts/YYYY-MM-DD-slug.md` 파일을 만들고 front matter 를 작성합니다.
+`src/content/posts/<slug>.md` 에 파일 추가. 글 URL은 `/YYYY/MM/DD/<slug>/` (날짜는 KST 기준).
 
-```yaml
+```md
 ---
-title: 글 제목
-categories: [dev]          # _data/categories.yml 의 key
-description: 목록 요약 (선택)
+title: '제목'
+description: '요약'
+pubDate: 2026-10-27T09:00:00+09:00
+category: dev
+tags: []
+featured: false
+draft: false
 ---
 ```
 
-- 카테고리 페이지(`/category/<slug>/`)는 `jekyll-archives` 가 자동 생성합니다.
-- 새 카테고리의 표시 이름·설명은 `_data/categories.yml` 에 추가합니다. (없어도 slug 로 동작)
-- 상단 메뉴는 `_data/navigation.yml` 에서 관리합니다.
+- `category` 의 표시 이름/설명은 `src/data/categories.ts` 에서 관리합니다. (없어도 key가 그대로 표시됨)
+- 카테고리 페이지(`/category/<slug>/`)는 글이 있는 카테고리마다 자동 생성됩니다.
 
 ## 구조
 
-| 경로 | 역할 |
-| --- | --- |
-| `_layouts/` | `default` → `home` / `post` / `page` / `category` |
-| `_includes/` | 재사용 컴포넌트 (`post-list` → `post-card` → `post-meta` → `category-list` → `category-link`) |
-| `_sass/` | `tokens`(색·크기 변수) · `mixins`(반복 스타일) · `base` · `layout` · `components` |
-| `_data/` | 카테고리 메타데이터, 내비게이션 |
-
-카테고리 slug → 이름/URL 변환은 `_includes/category-link.html` 한 곳에서만 처리합니다.
+```
+src/
+├─ config.ts            사이트 설정, 네비게이션, 서치콘솔 인증 코드
+├─ content.config.ts    글 front matter 스키마
+├─ data/categories.ts   카테고리 표시 이름/설명
+├─ lib/                 글 조회, URL, 날짜 유틸
+├─ components/          Header, PostCard, BaseHead(SEO) 등
+├─ layouts/             BaseLayout, PostLayout
+├─ pages/               홈, 글, 카테고리, feed.xml, sitemap.xml, robots.txt
+└─ styles/              tokens / base / components (plain CSS)
+```
 
 ## 배포
 
-`main` 브랜치에 push 하면 `.github/workflows/pages.yml` 이 빌드·배포합니다.
-최초 1회 **Settings → Pages → Source** 를 **GitHub Actions** 로 설정하세요.
+1. 저장소 **Settings -> Pages -> Source** 를 `GitHub Actions` 로 설정
+2. `main` 에 merge (또는 Actions 탭에서 수동 실행)
+
+커스텀 도메인은 `public/CNAME` 에 있습니다.

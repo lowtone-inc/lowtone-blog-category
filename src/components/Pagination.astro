@@ -1,0 +1,19 @@
+---
+import type { PageSlice } from '@/lib/posts';
+
+export interface Props {
+  slice: Pick<PageSlice, 'page' | 'totalPages' | 'prevUrl' | 'nextUrl'>;
+}
+
+const { page, totalPages, prevUrl, nextUrl } = Astro.props.slice;
+---
+
+{
+  totalPages > 1 && (
+    <nav class="pagination" aria-label="페이지 이동">
+      {prevUrl && <a class="pagination__link link-reset" href={prevUrl}>← 이전</a>}
+      <span class="pagination__status">{page} / {totalPages}</span>
+      {nextUrl && <a class="pagination__link link-reset" href={nextUrl}>다음 →</a>}
+    </nav>
+  )
+}

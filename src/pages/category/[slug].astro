@@ -1,0 +1,23 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHeader from '@/components/PageHeader.astro';
+import PostList from '@/components/PostList.astro';
+import { getCategoryGroups } from '@/lib/posts';
+import { withBase } from '@/lib/url';
+
+// 카테고리 페이지: /category/<slug>/ (글이 있는 카테고리만 생성)
+export async function getStaticPaths() {
+  const groups = await getCategoryGroups();
+  return groups.map((group) => ({ params: { slug: group.slug }, props: { group } }));
+}
+
+const { group } = Astro.props;
+---
+
+<BaseLayout title={group.name} description={group.description}>
+  <PageHeader title={group.name} description={group.description} />
+  <p class="category-count">
+    글 {group.posts.length}개 · <a href={withBase('/categories/')}>전체 카테고리</a>
+  </p>
+  <PostList posts={group.posts} />
+</BaseLayout>

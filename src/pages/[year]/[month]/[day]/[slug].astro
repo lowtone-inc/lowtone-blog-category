@@ -1,0 +1,21 @@
+---
+import { render } from 'astro:content';
+import PostLayout from '@/layouts/PostLayout.astro';
+import { getAdjacent, getPosts, postParams } from '@/lib/posts';
+
+// 글 URL: /YYYY/MM/DD/slug/ (날짜는 KST 기준, 기존 Jekyll permalink 유지)
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  return posts.map((post) => ({
+    params: postParams(post),
+    props: { post, ...getAdjacent(posts, post.id) },
+  }));
+}
+
+const { post, newer, older } = Astro.props;
+const { Content } = await render(post);
+---
+
+<PostLayout post={post} newer={newer} older={older}>
+  <Content />
+</PostLayout>

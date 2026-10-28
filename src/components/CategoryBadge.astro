@@ -1,0 +1,17 @@
+---
+import { CATEGORIES } from '@/data/categories';
+import { categoryUrl } from '@/lib/url';
+
+// 카테고리 key -> 표시 이름/URL 변환을 담당하는 유일한 곳
+export interface Props {
+  category: string;
+  count?: number;
+}
+
+const { category, count } = Astro.props;
+---
+
+<a class="category-badge" href={categoryUrl(category)}>
+  {CATEGORIES[category]?.name ?? category}
+  {count !== undefined && <span class="category-badge__count">{count}</span>}
+</a>

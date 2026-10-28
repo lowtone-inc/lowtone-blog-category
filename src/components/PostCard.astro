@@ -1,0 +1,18 @@
+---
+import PostMeta from './PostMeta.astro';
+import { postUrl, type Post } from '@/lib/posts';
+
+export interface Props {
+  post: Post;
+}
+
+const { post } = Astro.props;
+---
+
+<article class="post-card card">
+  <h2 class="post-card__title display">
+    <a class="link-reset" href={postUrl(post)}>{post.data.title}</a>
+  </h2>
+  <PostMeta post={post} />
+  <p class="post-card__excerpt">{post.data.description}</p>
+</article>
